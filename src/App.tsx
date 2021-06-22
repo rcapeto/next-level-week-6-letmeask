@@ -1,5 +1,12 @@
+import { AuthContextProvider } from './contexts/authContext';
+import Routes from './routes';
+
 import './services/firebase';
 
 export default function App() {
-  return <h1>Hello World</h1>
+  return(
+    <AuthContextProvider>
+      <Routes />
+    </AuthContextProvider>
+  );
 }
