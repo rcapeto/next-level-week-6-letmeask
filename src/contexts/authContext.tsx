@@ -9,11 +9,13 @@ export function AuthContextProvider({ children }: ChildrenProps) {
    const [user, setUser] = useState<User | null>(null);
 
    useEffect(() => {
-      checkUserAuthentication();
+      const unsubscribe = checkUserAuthentication();
+
+      return () => unsubscribe();
    }, []);
 
    function checkUserAuthentication() {
-      auth.onAuthStateChanged(currentUser => {
+      const unsubscribe = auth.onAuthStateChanged(currentUser => {
          if(currentUser) {
             const { displayName, photoURL, uid } = currentUser;
 
@@ -24,6 +26,8 @@ export function AuthContextProvider({ children }: ChildrenProps) {
             setUser({ id: uid, name: displayName, avatar: photoURL });
          }
       });
+
+      return unsubscribe;
    }
 
    async function signInWithGoogle() {
