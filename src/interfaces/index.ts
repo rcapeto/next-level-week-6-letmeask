@@ -17,13 +17,21 @@ export interface Question {
       avatar: string,
    },
    isHighlighted: boolean,
-   isAnswered: boolean
+   isAnswered: boolean,
+   likes: Record<string, {
+      authorId: string;
+   }>;
 }
 
 export interface Room {
    title: string;
    authorId: string;
-   questions: Question[]
+   questions: Question[];
+}
+
+export interface Likes {
+   id: string;
+   authorId: string;
 }
 
 export interface QuestionFrontEnd {
@@ -34,7 +42,17 @@ export interface QuestionFrontEnd {
       avatar: string,
    },
    isHighlighted: boolean,
-   isAnswered: boolean
+   isAnswered: boolean;
+   likeCount: number;
+   hasLiked: boolean;
+   likeId: LikeId;
+}
+
+interface LikeId {
+   likeKey: string;
+   like: {
+      authorId: string;
+   }
 }
 
 export type FirebaseQuestions = Record<string, Question>;   // Record<string, {}> => um objeto que a chave é uma string
