@@ -4,6 +4,15 @@
    box-sizing: 0px 2px 12px rgba(0, 0, 0, 0.04);
    padding: 24px;
 
+   &.isHighlighted {
+      background-color: #f4f0ff;
+      border: 1px solid #835afd;
+   }
+
+   &.isAnswered {
+      background-color: #dbdcdd;
+   }
+
    & + .question {
       margin-top: 8px;
    }
@@ -34,11 +43,24 @@
             font-size: 14px;
          }
       }
+      
+      > div {
+         display: flex;
+         gap: 16px;
+      }
 
       button {
          border: 0;
          background-color: transparent;
          cursor: pointer;
+
+         &.isHighlighted {
+            color: #835afd;
+   
+            svg path {
+               stroke: #835afd;
+            }
+         }
 
          &.like-button {
             display: flex;
@@ -54,7 +76,6 @@
                   stroke: #835afd;
                }
             }
-   
             &:hover {
                filter: brightness(.7);
             }

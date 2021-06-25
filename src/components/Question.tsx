@@ -9,7 +9,7 @@ type QuestionProps = QuestionFrontEnd & {
 
 export default function Question({ author, content, isAnswered, isHighlighted, children }: QuestionProps) {
    return(
-      <div className="question">
+      <div className={`question ${isAnswered ? 'isAnswered' : ''} ${isHighlighted && !isAnswered? 'isHighlighted' : ''}`}>
          <p>{content}</p>
          <footer>
             <div className="user-info">
